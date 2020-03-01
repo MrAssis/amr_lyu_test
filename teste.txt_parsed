@@ -1,0 +1,72 @@
+# ::snt The cat wants to eat the fish.
+# ::tok The cat wants to eat the fish .
+# ::lemma the cat want to eat the fish .
+# ::pos DT NN VBZ TO VB DT NN .
+# ::ner O O O O O O O O
+# ::node	c0	cat	1-2
+# ::node	w1	want-01	2-3
+# ::node	e2	eat-01	4-5
+# ::node	f3	fish	6-7
+# ::edge	want-01	:ARG0	cat	w1	c0	
+# ::edge	want-01	:ARG1	eat-01	w1	e2	
+# ::edge	eat-01	:ARG0	cat	e2	c0	
+# ::edge	eat-01	:ARG1	fish	e2	f3	
+(w1 / want-01
+    :ARG0 (c0 / cat
+        :ARG0-of e2)
+    :ARG1 (e2 / eat-01
+        :ARG1 (f3 / fish)))
+
+# ::snt The cat's desire is to eat fish.
+# ::tok The cat 's desire is to eat fish .
+# ::lemma the cat 's desire be to eat fish .
+# ::pos DT NN POS NN VBZ TO VB NN .
+# ::ner O O O O O O O O O
+# ::node	c0	cat	1-2
+# ::node	d1	desire-01	3-4
+# ::node	e2	eat-01	6-7
+# ::node	f3	fish	7-8
+# ::edge	desire-01	:ARG0	cat	d1	c0	
+# ::edge	desire-01	:ARG1	eat-01	d1	e2	
+# ::edge	eat-01	:ARG0	cat	e2	c0	
+# ::edge	eat-01	:ARG1	fish	e2	f3	
+(e2 / eat-01
+    :ARG1-of (d1 / desire-01
+        :ARG0 c0)
+    :ARG0 (c0 / cat)
+    :ARG1 (f3 / fish))
+
+# ::snt Eating fish is what the cat desires.
+# ::tok Eating fish is what the cat desires .
+# ::lemma Eating fish be what the cat desire .
+# ::pos NNP NN VBZ WP DT NN NNS .
+# ::ner O O O O O O O O
+# ::node	f0	fish	1-2
+# ::node	t1	that	3-4
+# ::node	c2	cat	5-6
+# ::node	d3	desire-01	6-7
+# ::edge	desire-01	:ARG1	that	d3	t1	
+# ::edge	desire-01	:ARG0	cat	d3	c2	
+# ::edge	desire-01	:ARG1	fish	d3	f0	
+(d3 / desire-01
+    :ARG1 (t1 / that)
+    :ARG0 (c2 / cat)
+    :ARG1 (f0 / fish))
+
+# ::snt The fish was eaten by the cat.
+# ::tok The fish was eaten by-the cat .
+# ::lemma the fish be eat by-the cat .
+# ::pos DT NN VBD VBN COMP NN .
+# ::ner O O O O 0 O O
+# ::node	f0	fish	1-2
+# ::node	e1	eat-01	3-4
+# ::node	b2	blather-01	4-5
+# ::node	c3	cat	5-6
+# ::edge	eat-01	:ARG1	fish	e1	f0	
+# ::edge	blather-01	:ARG0	cat	b2	c3	
+# ::edge	blather-01	:ARG0	eat-01	b2	e1	
+(b2 / blather-01
+    :ARG0 (c3 / cat)
+    :ARG0 (e1 / eat-01
+        :ARG1 (f0 / fish)))
+

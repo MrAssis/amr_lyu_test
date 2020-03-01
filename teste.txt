@@ -1,0 +1,4 @@
+The cat wants to eat the fish.
+The cat's desire is to eat fish.
+Eating fish is what the cat desires.
+The fish was eaten by the cat.
